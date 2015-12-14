@@ -4,5 +4,5 @@
     <string name="hello">Hello World, MainActivity!</string>
     <string name="app_name">ImageResizer</string>
 	<string name="square">Square</string>
-	<string name="_2x">Width &amp; Height 2x</string>
+	<string name="size2x">Width &amp; Height 2x</string>
 </resources>
