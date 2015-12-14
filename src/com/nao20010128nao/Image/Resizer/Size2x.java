@@ -31,8 +31,6 @@ public class Size2x extends Activity
 					} catch (Throwable e) {}
 				}
 				Bitmap resized=Bitmap.createBitmap(bmp.getWidth()*2,bmp.getHeight()*2,Bitmap.Config.ARGB_8888);
-				Bitmap resized2=Bitmap.createBitmap(bmp.getWidth()*2,bmp.getHeight()*2,Bitmap.Config.ARGB_4444);
-				Bitmap resized3=Bitmap.createBitmap(bmp.getWidth()*2,bmp.getHeight()*2,Bitmap.Config.RGB_565);
 				for(int x=0;x<bmp.getWidth();x++){
 					for(int y=0;y<bmp.getHeight();y++){
 						int col=bmp.getPixel(x,y);
@@ -40,21 +38,11 @@ public class Size2x extends Activity
 						resized .setPixel(x*2+1,y*2  ,col);
 						resized .setPixel(x*2  ,y*2+1,col);
 						resized .setPixel(x*2+1,y*2+1,col);
-						resized2.setPixel(x*2  ,y*2  ,col);
-						resized2.setPixel(x*2+1,y*2  ,col);
-						resized2.setPixel(x*2  ,y*2+1,col);
-						resized2.setPixel(x*2+1,y*2+1,col);
-						resized3.setPixel(x*2  ,y*2  ,col);
-						resized3.setPixel(x*2+1,y*2  ,col);
-						resized3.setPixel(x*2  ,y*2+1,col);
-						resized3.setPixel(x*2+1,y*2+1,col);
 					}
 				}
 				bmp.recycle();
 				File f=new File(Environment.getExternalStorageDirectory(),"ImageResizer");
 				if(!f.exists())f.mkdirs();
-				File f2=new File(f,System.currentTimeMillis()+"_4444.png");
-				File f3=new File(f,System.currentTimeMillis()+"_565.png");
 				f=new File(f,System.currentTimeMillis()+".png");
 				try {
 					Log.d("dbg", "save:" + resized.compress(Bitmap.CompressFormat.PNG, 100, os = new FileOutputStream(f)));
@@ -66,28 +54,6 @@ public class Size2x extends Activity
 						os.close();
 					} catch (Throwable ez) {}
 					resized.recycle();
-				}
-				try {
-					Log.d("dbg", "save:" + resized2.compress(Bitmap.CompressFormat.PNG, 100, os = new FileOutputStream(f2)));
-				} catch (Throwable e) {
-					finish();
-				}finally{
-					try {
-						os.flush();
-						os.close();
-					} catch (Throwable ez) {}
-					resized2.recycle();
-				}
-				try {
-					Log.d("dbg", "save:" + resized3.compress(Bitmap.CompressFormat.PNG, 100, os = new FileOutputStream(f3)));
-				} catch (Throwable e) {
-					finish();
-				}finally{
-					try {
-						os.flush();
-						os.close();
-					} catch (Throwable ez) {}
-					resized3.recycle();
 				}
 				finish();
 			}
