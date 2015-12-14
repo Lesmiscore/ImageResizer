@@ -5,4 +5,5 @@
     <string name="app_name">ImageResizer</string>
 	<string name="square">Square</string>
 	<string name="size2x">Width &amp; Height 2x</string>
+	<string name="makeImgRes">Make a image resource (Square)</string>
 </resources>
