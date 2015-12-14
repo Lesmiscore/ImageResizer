@@ -42,5 +42,14 @@
 				<category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+		<activity
+            android:label="@string/size2x"
+            android:name=".Size2xMulti">
+            <intent-filter >
+                <action android:name="android.intent.action.SEND_MULTIPLE" />
+				<data android:mimeType="image/*"/>
+				<category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 </manifest>
