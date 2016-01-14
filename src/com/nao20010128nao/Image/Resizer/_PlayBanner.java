@@ -18,7 +18,27 @@ public class _PlayBanner extends Activity
 		new Thread(){
 			public void run(){
 				OutputStream os=null;
+				String data=getIntent().getDataString();
+				if(data==null)data=((Object)getIntent().getParcelableExtra(Intent.EXTRA_STREAM)).toString();
+				Bitmap bmp;InputStream is=null;
+				try {
+					bmp=BitmapFactory.decodeStream(is=tryOpen(data));
+				} catch (Throwable e) {
+					finish();
+					return;
+				}finally{
+					try {
+						is.close();
+					} catch (Throwable e) {}
+				}
 				Bitmap resized=Bitmap.createBitmap(1024,500,Bitmap.Config.ARGB_8888);
+				int basX=(resized.getWidth()-bmp.getWidth())/2;
+				int basY=(resized.getHeight()-bmp.getHeight())/2;
+				for(int x=0;x<bmp.getWidth();x++){
+					for(int y=0;y<bmp.getWidth();y++){
+						resized.setPixel(basX+x,basY+y,bmp.getPixel(x,y));
+					}
+				}
 				File f=new File(Environment.getExternalStorageDirectory(),"ImageResizer");
 				if(!f.exists())f.mkdirs();
 				f=new File(f,System.currentTimeMillis()+".png");
