@@ -117,7 +117,7 @@ public class ImageResource extends Activity
 				File xxxhdpiF=new File(f,"/drawable-xxxhdpi/");
 				xxxhdpiF.mkdirs();
 				xxxhdpiF=new File(xxxhdpiF,resourceName+".png");
-				Bitmap xxxhdpi=Bitmap.createScaledBitmap(bmp,144,144,false);
+				Bitmap xxxhdpi=Bitmap.createScaledBitmap(bmp,192,192,false);
 				try {
 					Log.d("dbg", "save:" + xxxhdpi.compress(Bitmap.CompressFormat.PNG, 100, os = new FileOutputStream(xxxhdpiF)));
 				} catch (Throwable e) {
